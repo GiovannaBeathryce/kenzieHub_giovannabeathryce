@@ -1,9 +1,11 @@
+import { Container } from "./style";
+
 const Navbar = ({ children }) => {
   return (
-    <div>
+    <Container>
       <h1>Kenzie Hub</h1>
       {children}
-    </div>
+    </Container>
   );
 };
 

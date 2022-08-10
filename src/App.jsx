@@ -1,9 +1,10 @@
 import RoutesMain from "./Routes";
-import "./App.css";
+import { GlobalStyles } from "./GlobalSyles";
 
 function App() {
   return (
     <>
+      <GlobalStyles />
       <RoutesMain />
     </>
   );

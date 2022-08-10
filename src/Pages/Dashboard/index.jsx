@@ -1,4 +1,5 @@
 import Header from "../../Components/Header";
+import Main from "../../Components/Main";
 import Navbar from "../../Components/Navbar";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
         <button>Sair</button>
       </Navbar>
       <Header />
+      <Main />
     </>
   );
 };

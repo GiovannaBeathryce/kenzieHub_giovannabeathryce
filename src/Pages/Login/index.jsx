@@ -1,30 +1,31 @@
 import React from "react";
+import { ButtonCadastrar, ButtonForm } from "../../Components/Button/style";
 import Form from "../../Components/Form";
+import Navbar from "../../Components/Navbar";
 
 const Login = () => {
   return (
-    <Form>
-      <h3>Login</h3>
+    <>
+      <Navbar />
+      <Form>
+        <h3>Login</h3>
 
-      <label htmlFor="email">
-        Email
+        <label htmlFor="email">Email</label>
         <input type="text" id="email" placeholder="Digite aqui seu email" />
-      </label>
 
-      <label htmlFor="password">
-        Senha
+        <label htmlFor="password">Senha</label>
         <input
           type="password"
           id="password"
           placeholder="Digite aqui sua senha"
         />
-      </label>
 
-      <button type="submit">Entrar</button>
+        <ButtonForm type="submit">Entrar</ButtonForm>
 
-      <span>Ainda não possui uma conta?</span>
-      <button>Cadastre-se</button>
-    </Form>
+        <p>Ainda não possui uma conta?</p>
+        <ButtonCadastrar type="submit">Cadastre-se</ButtonCadastrar>
+      </Form>
+    </>
   );
 };
 
