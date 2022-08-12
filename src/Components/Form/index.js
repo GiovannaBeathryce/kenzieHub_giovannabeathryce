@@ -51,6 +51,14 @@ const Form = styled.form`
     color: #868e96;
     font-size: 12px;
   }
+
+  span {
+    color: #e83f5b;
+    font-size: 10px;
+    font-weight: 400;
+    text-align: start;
+    width: 90%;
+  }
 `;
 
 export default Form;
