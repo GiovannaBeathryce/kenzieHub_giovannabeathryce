@@ -5,7 +5,7 @@ const Header = ({ user }) => {
     <>
       <HeaderConteiner>
         <h2>Olá, {user.name}</h2>
-        <p>Primeiro módulo (Introdução ao Frontend)</p>
+        <p>{user.course_module}</p>
       </HeaderConteiner>
     </>
   );
