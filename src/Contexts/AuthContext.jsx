@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
           api.defaults.headers.authorization = `Bearer ${token}`;
 
           const { data } = await api.get("/profile");
-          console.log(data);
+
           setUser(data);
         } catch (error) {
           console.error(error);
@@ -50,6 +50,7 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem("@KenzieHub:userId", userId);
     navigate("/home", { replace: true });
   };
+  console.log(user);
 
   const checkout = () => {
     setUser(null);

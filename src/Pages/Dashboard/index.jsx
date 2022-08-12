@@ -19,7 +19,7 @@ const Home = () => {
       <Navbar>
         <button onClick={() => checkout()}>Sair</button>
       </Navbar>
-      <Header />
+      <Header user={user} />
       <Main />
     </>
   ) : (

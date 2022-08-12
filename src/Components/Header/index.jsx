@@ -1,10 +1,10 @@
 import { HeaderConteiner } from "./style";
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <>
       <HeaderConteiner>
-        <h2>Olá, usuário</h2>
+        <h2>Olá, {user.name}</h2>
         <p>Primeiro módulo (Introdução ao Frontend)</p>
       </HeaderConteiner>
     </>
