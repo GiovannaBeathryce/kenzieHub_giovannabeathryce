@@ -56,7 +56,7 @@ const Login = () => {
               {...register("password")}
             />
           )}
-          <button onClick={() => visibilit()}>
+          <button type="button" onClick={() => visibilit()}>
             {!isVisible ? <MdOutlineVisibilityOff /> : <MdOutlineVisibility />}
           </button>
         </div>
