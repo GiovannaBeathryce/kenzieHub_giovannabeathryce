@@ -9,7 +9,6 @@ export const HeaderConteiner = styled.section`
   height: 7rem;
   max-height: 8rem;
   padding: 2rem;
-  margin: 0 0 2rem 0;
   border: 1px solid #212529;
 
   @media screen and (min-width: 750px) {

@@ -1,5 +1,3 @@
-// import { useEffect } from "react";
-// import api from "../../Services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Navbar from "../../Components/Navbar";
@@ -19,11 +17,12 @@ const Register = () => {
   });
 
   const { userRegister } = useContext(AuthContext);
+  const { returnLogin } = useContext(AuthContext);
 
   return (
     <>
       <Navbar>
-        <button>Voltar</button>
+        <button onClick={() => returnLogin()}>Voltar</button>
       </Navbar>
       <Form onSubmit={handleSubmit(userRegister)}>
         <h3>Registre-se</h3>

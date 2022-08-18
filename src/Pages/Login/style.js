@@ -23,4 +23,28 @@ export const LoginPage = styled.div`
       border: 1.2px solid #343b41;
     }
   }
+
+  .containerPassword {
+    width: 90%;
+    height: 3rem;
+    background-color: #343b41;
+    border: 1.3px solid #343b41;
+    border-radius: 4px;
+    color: #868e96;
+    font-size: 12px;
+
+    input {
+      height: 2.75rem;
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      background: trasparent;
+      color: white;
+      width: 30px;
+      height: 45px;
+      padding-top: 2px;
+    }
+  }
 `;

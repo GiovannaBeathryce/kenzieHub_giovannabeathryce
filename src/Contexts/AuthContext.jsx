@@ -22,12 +22,14 @@ const AuthProvider = ({ children }) => {
           setUser(data);
         } catch (error) {
           console.error(error);
+          localStorage.removeItem("@KenzieHub:token");
+          localStorage.removeItem("@KenzieHub:userId");
         }
       }
       setLoading(false);
     }
     userLogged();
-  }, []);
+  }, [user]);
 
   const userRegister = async (data) => {
     const response = await api.post("/users", data);
@@ -43,8 +45,7 @@ const AuthProvider = ({ children }) => {
     const { user: userResponse, token } = response.data;
     const userId = response.data.user.id;
 
-    api.defaults.headers.authorization = `Bearer ${token}`;
-
+    api.defaults.headers.Authorization = `Bearer ${token}`;
     setUser(userResponse);
     localStorage.setItem("@KenzieHub:token", token);
     localStorage.setItem("@KenzieHub:userId", userId);
@@ -58,9 +59,20 @@ const AuthProvider = ({ children }) => {
     navigate("/login", { replace: true });
   };
 
+  const returnLogin = () => {
+    navigate("/login", { replace: true });
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, signin, userRegister, checkout, loading }}
+      value={{
+        user,
+        signin,
+        userRegister,
+        checkout,
+        loading,
+        returnLogin,
+      }}
     >
       {children}
     </AuthContext.Provider>

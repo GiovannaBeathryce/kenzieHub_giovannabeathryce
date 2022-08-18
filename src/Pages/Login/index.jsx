@@ -2,13 +2,15 @@ import { React, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../Validators/loginUser";
-
+import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Form from "../../Components/Form";
 import Navbar from "../../Components/Navbar";
 import { ButtonForm } from "../../Components/Button/style";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { LoginPage } from "./style";
+import { useState } from "react";
+import { type } from "@testing-library/user-event/dist/type";
 
 const Login = () => {
   const {
@@ -18,6 +20,9 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(loginSchema) });
 
   const { signin } = useContext(AuthContext);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const visibilit = () => setIsVisible(!isVisible);
 
   return (
     <LoginPage>
@@ -35,12 +40,26 @@ const Login = () => {
         <span>{errors.email?.message}</span>
 
         <label htmlFor="password">Senha</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Digite aqui sua senha"
-          {...register("password")}
-        />
+        <div className="containerPassword">
+          {!isVisible ? (
+            <input
+              type="password"
+              id="password"
+              placeholder="Digite aqui sua senha"
+              {...register("password")}
+            />
+          ) : (
+            <input
+              type="text"
+              id="password"
+              placeholder="Digite aqui sua senha"
+              {...register("password")}
+            />
+          )}
+          <button onClick={() => visibilit()}>
+            {!isVisible ? <MdOutlineVisibilityOff /> : <MdOutlineVisibility />}
+          </button>
+        </div>
         <span>{errors.password?.message}</span>
 
         <ButtonForm type="submit">Entrar</ButtonForm>
