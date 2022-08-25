@@ -22,7 +22,7 @@ const Form = styled.form`
 
   p {
     color: #868e96;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
     margin: 22px;
   }
@@ -34,7 +34,7 @@ const Form = styled.form`
     flex-direction: column;
     width: 90%;
     color: #f8f9fa;
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 400;
     margin: 15px 0 15px 0;
   }
@@ -49,12 +49,12 @@ const Form = styled.form`
     padding: 10px;
 
     color: #868e96;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   span {
     color: #e83f5b;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
     text-align: start;
     width: 90%;

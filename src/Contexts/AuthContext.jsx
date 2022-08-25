@@ -7,6 +7,7 @@ export const AuthContext = createContext({});
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [techs, setTechs] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,7 @@ const AuthProvider = ({ children }) => {
 
           const { data } = await api.get("/profile");
 
+          setTechs(data.techs);
           setUser(data);
         } catch (error) {
           console.error(error);
@@ -29,15 +31,7 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
     userLogged();
-  }, [user]);
-
-  const userRegister = async (data) => {
-    const response = await api.post("/users", data);
-
-    const userId = response.data.id;
-
-    userId ? navigate("/login", { replace: true }) : navigate("/register");
-  };
+  }, []);
 
   const signin = async (data) => {
     const response = await api.post("/sessions", data);
@@ -49,7 +43,19 @@ const AuthProvider = ({ children }) => {
     setUser(userResponse);
     localStorage.setItem("@KenzieHub:token", token);
     localStorage.setItem("@KenzieHub:userId", userId);
-    navigate("/home", { replace: true });
+
+    if (token && userId) {
+      navigate("/home", { replace: true });
+      setTechs(response.data.user.techs);
+    }
+  };
+
+  const userRegister = async (data) => {
+    const response = await api.post("/users", data);
+
+    const userId = response.data.id;
+
+    userId ? navigate("/login", { replace: true }) : navigate("/register");
   };
 
   const checkout = () => {
@@ -73,6 +79,8 @@ const AuthProvider = ({ children }) => {
         checkout,
         loading,
         returnLogin,
+        techs,
+        setTechs,
       }}
     >
       {children}

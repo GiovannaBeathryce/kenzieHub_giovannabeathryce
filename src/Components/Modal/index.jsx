@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { modalSchema } from "../../Validators/modal";
+import { useContext } from "react";
+import { ModalContext } from "../../Contexts/ModalContext";
+
 import Form from "../Form/";
 import { ButtonForm } from "../Button/style";
 import { ModalAdd } from "./style";
-import { useContext } from "react";
-import { ModalContext } from "../../Contexts/ModalContext";
 
 const Modal = () => {
   const {

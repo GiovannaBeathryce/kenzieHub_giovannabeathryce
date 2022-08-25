@@ -10,7 +10,6 @@ import { ButtonForm } from "../../Components/Button/style";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { LoginPage } from "./style";
 import { useState } from "react";
-import { type } from "@testing-library/user-event/dist/type";
 
 const Login = () => {
   const {

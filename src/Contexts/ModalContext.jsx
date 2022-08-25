@@ -1,36 +1,34 @@
-import { useContext } from "react";
-import { createContext, useState } from "react";
+import { useContext, createContext, useState } from "react";
 import api from "../Services/api";
 import { AuthContext } from "./AuthContext";
 
 export const ModalContext = createContext({});
 
 const MoodalProvider = ({ children }) => {
-  const { user, setUser } = useContext(AuthContext);
+  const { techs, setTechs } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
 
-  useState(() => {
-    async function userLogged() {
-      const token = localStorage.getItem("@KenzieHub:token");
-
-      if (token) {
-        api.defaults.headers.authorization = `Bearer ${token}`;
-
-        const { data } = await api.get("/profile");
-
-        setUser(data);
-      }
-    }
-    userLogged();
-  }, [user]);
+  const token = localStorage.getItem("@KenzieHub:token");
 
   const addTec = async (data) => {
-    await api.post("/users/techs", data);
+    if (token) {
+      await api.post("/users/techs", data).then((_) => {
+        api.get("/profile").then((res) => {
+          setTechs(res.data.techs);
+        });
+      });
+    }
     closeModal();
   };
 
   const removeTech = async (id) => {
-    await api.delete(`/users/techs/${id}`);
+    if (token) {
+      await api.delete(`/users/techs/${id}`).then((_) => {
+        api.get("/profile").then((res) => {
+          setTechs(res.data.techs);
+        });
+      });
+    }
   };
 
   const openModal = () => {
@@ -43,7 +41,15 @@ const MoodalProvider = ({ children }) => {
 
   return (
     <ModalContext.Provider
-      value={{ isVisible, openModal, closeModal, addTec, removeTech }}
+      value={{
+        isVisible,
+        openModal,
+        closeModal,
+        addTec,
+        removeTech,
+        techs,
+        setTechs,
+      }}
     >
       {children}
     </ModalContext.Provider>
