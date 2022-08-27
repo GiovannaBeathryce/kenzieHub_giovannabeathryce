@@ -1,16 +1,30 @@
-import { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, ReactNode } from "react";
 import api from "../Services/api";
-import { AuthContext } from "./AuthContext";
+import { AuthContext, ITech, ITechProps } from "./AuthContext";
 
-export const ModalContext = createContext({});
+export const ModalContext = createContext({} as IModalContext);
 
-const MoodalProvider = ({ children }) => {
+interface IModalProviderProp {
+  children: ReactNode;
+}
+
+export interface IModalContext {
+  isVisible: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+  addTec: (data: object) => Promise<void>;
+  removeTech: (id: string) => Promise<void>;
+  techs: ITech[];
+  setTechs: React.Dispatch<React.SetStateAction<ITech[]>>;
+}
+
+const MoodalProvider = ({ children }: IModalProviderProp) => {
   const { techs, setTechs } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
 
   const token = localStorage.getItem("@KenzieHub:token");
 
-  const addTec = async (data) => {
+  const addTec = async (data: object) => {
     if (token) {
       await api.post("/users/techs", data).then((_) => {
         api.get("/profile").then((res) => {
@@ -21,7 +35,7 @@ const MoodalProvider = ({ children }) => {
     closeModal();
   };
 
-  const removeTech = async (id) => {
+  const removeTech = async (id: string) => {
     if (token) {
       await api.delete(`/users/techs/${id}`).then((_) => {
         api.get("/profile").then((res) => {

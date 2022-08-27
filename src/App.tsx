@@ -1,7 +1,8 @@
+import React from "react";
 import RoutesMain from "./Routes";
 import { GlobalStyles } from "./GlobalSyles";
-import AuthProvider from "./Contexts/AuthContext";
 import MoodalProvider from "./Contexts/ModalContext";
+import AuthProvider from "./Contexts/AuthContext";
 
 function App() {
   return (

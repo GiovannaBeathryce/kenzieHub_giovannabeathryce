@@ -2,10 +2,12 @@ import { ListTechs } from "./style";
 import { BsTrash } from "react-icons/bs";
 import { useContext } from "react";
 import { ModalContext } from "../../Contexts/ModalContext";
-import { AuthContext } from "../../Contexts/AuthContext";
+import { AuthContext, ITech } from "../../Contexts/AuthContext";
+import { IModalContext } from "../../Contexts/ModalContext";
+import React from "react";
 
 const List = () => {
-  const { removeTech } = useContext(ModalContext);
+  const { removeTech } = useContext<IModalContext>(ModalContext);
 
   const { techs } = useContext(AuthContext);
 
@@ -16,7 +18,7 @@ const List = () => {
           <h5>Você ainda não possui tecnologias cadastradas </h5>
         </div>
       ) : (
-        techs.map((tech) => (
+        techs.map((tech: ITech) => (
           <div key={tech.id}>
             <h4>{tech.title}</h4>
             <p>

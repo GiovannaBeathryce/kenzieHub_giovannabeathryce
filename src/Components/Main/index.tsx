@@ -1,12 +1,13 @@
+import React from "react";
 import { useContext } from "react";
-import { ModalContext } from "../../Contexts/ModalContext";
+import { IModalContext, ModalContext } from "../../Contexts/ModalContext";
 import List from "../ListTechs";
 import Modal from "../Modal";
 import { MainContainer } from "./style";
 
 const Main = () => {
-  const { isVisible } = useContext(ModalContext);
-  const { openModal } = useContext(ModalContext);
+  const { isVisible } = useContext<IModalContext>(ModalContext);
+  const { openModal } = useContext<IModalContext>(ModalContext);
 
   return (
     <MainContainer>

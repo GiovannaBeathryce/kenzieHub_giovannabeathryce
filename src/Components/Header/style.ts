@@ -1,4 +1,9 @@
 import styled from "styled-components";
+// import { ReactNode } from "react";
+
+// export interface IHeaderConteinerProps {
+//   children: ReactNode;
+// }
 
 export const HeaderConteiner = styled.section`
   display: flex;
